@@ -21,3 +21,7 @@ Use Claude Code with your credentials:
 ```bash
 docker run --rm -v ~/.claude/.credentials.json:/root/.claude/.credentials.json ghcr.io/nerahikada/hello-claude
 ```
+
+## Hints
+
+* To skip Claude Code CLI onboarding, set `"hasCompletedOnboarding": true` in `~/.claude.json`.
