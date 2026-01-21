@@ -41,7 +41,8 @@ jobs:
         id: check
         run: |
           VERSION="${{ steps.version.outputs.claude_version }}"
-          IMAGE="ghcr.io/${{ github.repository }}"
+          IMAGE_NAME=$(echo "${{ github.repository }}" | tr '[:upper:]' '[:lower:]')
+          IMAGE="ghcr.io/${IMAGE_NAME}"
           
           if docker manifest inspect ${IMAGE}:${VERSION} >/dev/null 2>&1; then
             echo "exists=true" >> $GITHUB_OUTPUT
