@@ -7,11 +7,9 @@ RUN apt-get update \
 	   curl ca-certificates bash \
 	&& rm -rf /var/lib/apt/lists/*
 
-# Install Claude Code using the official installer
-RUN curl -fsSL https://claude.ai/install.sh | bash
-
-# Ensure the installer-installed binaries in root's local bin are on PATH
-ENV PATH=/root/.local/bin:${PATH}
+# Install Claude Code using the official installer and move to a shared path
+RUN curl -fsSL https://claude.ai/install.sh | bash \
+	&& mv /root/.local/bin/claude /usr/local/bin/claude
 
 # Run a simple hello command by default
 CMD ["claude", "--print", "--no-session-persistence", "hello"]
