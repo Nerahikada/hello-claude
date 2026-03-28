@@ -9,9 +9,8 @@ RUN apt-get update \
 
 # Install Claude Code using the official installer and relocate to a shared path
 RUN curl -fsSL https://claude.ai/install.sh | bash \
-	&& mv /root/.local/share/claude /usr/local/share/claude \
-	&& ln -sf "$(ls /usr/local/share/claude/versions/*)" /usr/local/bin/claude \
-	&& rm -f /root/.local/bin/claude
+	&& mv /root/.local/share/claude/versions/* /usr/local/bin/claude \
+	&& rm -rf /root/.local/bin/claude /root/.local/share/claude
 
 # Run a simple hello command by default
 CMD ["claude", "--print", "--no-session-persistence", "hello"]
